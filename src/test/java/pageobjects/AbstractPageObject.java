@@ -18,7 +18,12 @@ public class AbstractPageObject {
     public AbstractPageObject(WebDriver driver) {
         this.driver = driver;
     }
-
+    public WebElement userRecord(String value){
+        return getElement(By.xpath("//div[text()='"+value+"']"));
+    }
+    public WebElement userRecord2(String value){
+        return getElement(By.xpath("//div[text()='"+value+"']"));
+    }
     public WebElement getElement(By by, int waitForSeconds) {
         return new WebDriverWait(driver, Duration.ofSeconds(waitForSeconds))
                 .until(ExpectedConditions.presenceOfElementLocated(by));

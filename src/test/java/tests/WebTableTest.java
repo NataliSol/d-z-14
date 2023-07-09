@@ -13,24 +13,17 @@ import java.time.Duration;
 
 public class WebTableTest extends BaseTest {
 
-
     @Test
     @Description("The test is checking positive case for filling out form fields")
     public void testFillOutFormPositive() {
         new WebTablePage(driver).fillOutForm("John", "Doe", "johndoe@example.com",
                 "30", "50000", "Engineering");
-        WebElement firstNameField = driver.findElement(By.xpath("//div[text()='John']"));
-        WebElement lastNameField = driver.findElement(By.xpath("//div[text()='Doe']"));
-        WebElement e_mailField = driver.findElement(By.xpath("//div[text()='johndoe@example.com']"));
-        WebElement ageField = driver.findElement(By.xpath("//div[text()='30']"));
-        WebElement salaryField = driver.findElement(By.xpath("//div[text()='50000']"));
-        WebElement departmentField = driver.findElement(By.xpath("//div[text()='Engineering']"));
-        Assert.assertEquals(firstNameField.getText(), "John");
-        Assert.assertEquals(lastNameField.getText(), "Doe");
-        Assert.assertEquals(e_mailField.getText(), "johndoe@example.com");
-        Assert.assertEquals(ageField.getText(), "30");
-        Assert.assertEquals(salaryField.getText(), "50000");
-        Assert.assertEquals(departmentField.getText(), "Engineering");
+        Assert.assertTrue(userRecord("John").isDisplayed(), "John element is not displayed");
+        Assert.assertTrue(userRecord("Doe").isDisplayed(), "Doe element is not displayed");
+        Assert.assertTrue(userRecord("johndoe@example.com").isDisplayed(), "johndoe@example.com element is not displayed");
+        Assert.assertTrue(userRecord("30").isDisplayed(), "30 element is not displayed");
+        Assert.assertTrue(userRecord("50000").isDisplayed(), "50000 element is not displayed");
+        Assert.assertTrue(userRecord("Engineering").isDisplayed(), "Engineering element is not displayed");
     }
 
     @Test
@@ -40,8 +33,8 @@ public class WebTableTest extends BaseTest {
         webTablePage.fillOutForm("John", "Doe", "johndoe@example.com",
                 "30", "50000", "Engineering");
         webTablePage.editForm("35", "60000", "Accounting");
-        Assert.assertEquals(driver.findElement(By.xpath("//div[text()='Accounting']")).getText(), "Accounting");
-        Assert.assertEquals(driver.findElement(By.xpath("//div[text()='35']")).getText(), "35");
-        Assert.assertEquals(driver.findElement(By.xpath("//div[text()='60000']")).getText(), "60000");
+        Assert.assertTrue(userRecord("Accounting").isDisplayed(), "Accounting element is not displayed");
+        Assert.assertTrue(userRecord("35").isDisplayed(), "30 element is not displayed");
+        Assert.assertTrue(userRecord("60000").isDisplayed(), "60000 element is not displayed");
     }
 }
